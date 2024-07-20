@@ -8,7 +8,9 @@ public class BoatController : Boat
 {
     public enum Player
     {
-        Player1, Player2
+        Player1 = 0,
+        Player2 = 1,
+        None = 2,
     }
 
     [Header("Controls")]
@@ -17,13 +19,18 @@ public class BoatController : Boat
     [SerializeField] private InputAction passWeaponAction;
     [SerializeField] private Player player;
 
-
+    [Header("Movement")]
     [SerializeField] private float speed;
     [SerializeField] private Vector2 inputVector;
 
+    [Header("Weapon")]
+    [SerializeField] private SpriteRenderer _weapon;
 
+    private bool _owningWeapon = false;
 
-
+    public InputAction PassWeaponAction { get { return passWeaponAction; } }
+    public Player PlayerId { get { return player; } }
+    public bool OwningWeapon => _owningWeapon;
     protected override void Awake()
     {
         base.Awake();
@@ -34,6 +41,11 @@ public class BoatController : Boat
 
         movementAction.performed += MovementAction_performed;
         movementAction.canceled += MovementAction_canceled;
+
+        ChangableWeapon.OnOwnershipChanged.AddListener((Player playerReceivingWeapon) => { if (player == playerReceivingWeapon) { ReceiveWeapon(); } });
+        ChangableWeapon.OnSendingWeapon.AddListener(() => { SendWeapon(); });
+
+        _weapon.enabled = false;
     }
 
     private void MovementAction_canceled(InputAction.CallbackContext context)
@@ -43,13 +55,29 @@ public class BoatController : Boat
 
     private void MovementAction_performed(InputAction.CallbackContext obj)
     {
-        
+
         inputVector = obj.ReadValue<Vector2>();
     }
 
     private void Update()
     {
         rb.AddForce(inputVector * speed * Time.deltaTime, ForceMode2D.Force);
-        
+
+    }
+
+    private void ReceiveWeapon()
+    {
+        ChangeWaponState(true);
+    }
+
+    private void SendWeapon()
+    {
+        ChangeWaponState(false);
+    }
+
+    private void ChangeWaponState(bool active)
+    {
+        _owningWeapon = active;
+        _weapon.enabled = active;
     }
 }

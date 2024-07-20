@@ -8,16 +8,14 @@ public class WeaponConection : MonoBehaviour
     [SerializeField] private SpriteRenderer _tubeSprite;
 
     private Vector2 _tubeSize;
+    
+    public List<BoatController> BoatsConected { get { return _boatsToConnect; } }
+
     void Start()
     {
         if (_tubeSprite == null)
         {
             _tubeSprite = GetComponentInChildren<SpriteRenderer>();
-        }
-
-        if (_boatsToConnect.Count < 2)
-        {
-            _boatsToConnect = FindObjectsOfType<BoatController>().ToList();
         }
 
         SetTubeTransform();
