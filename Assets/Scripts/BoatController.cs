@@ -30,7 +30,7 @@ public class BoatController : Boat
         playerInput = new PlayerInput();
         playerInput.Enable();
         movementAction = player == Player.Player1 ? playerInput.Player1.Movement : playerInput.Player2.Movement;
-        passWeaponAction = player == Player.Player1 ? playerInput.Player1.Movement : playerInput.Player2.Movement;
+        passWeaponAction = player == Player.Player1 ? playerInput.Player1.PassWeapon : playerInput.Player2.PassWeapon;
 
         movementAction.performed += MovementAction_performed;
         movementAction.canceled += MovementAction_canceled;
