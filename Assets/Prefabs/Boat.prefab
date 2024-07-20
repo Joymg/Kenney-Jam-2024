@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8986220684357618281}
   - component: {fileID: 2893996757374524422}
   - component: {fileID: 401157287573584492}
-  m_Layer: 0
+  - component: {fileID: 6052614249624526482}
+  m_Layer: 6
   m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,18 +51,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boat: {fileID: 0}
-  visuals:
-    <Base>k__BackingField: {fileID: 0}
-    <LargeSail>k__BackingField: {fileID: 0}
-    <Nest>k__BackingField: {fileID: 0}
-    <Flag>k__BackingField: {fileID: 0}
-    <SmallNest>k__BackingField: {fileID: 0}
   state: 0
+  visuals:
+    <Base>k__BackingField: {fileID: 8672308995866133454}
+    <LargeSail>k__BackingField: {fileID: 7182127609229546271}
+    <Nest>k__BackingField: {fileID: 869741250945670132}
+    <Flag>k__BackingField: {fileID: 806223360058165021}
+    <SmallNest>k__BackingField: {fileID: 8802609181978184732}
   visualsConfiguration: {fileID: 11400000, guid: 34919dffd74212847a2a837c5599abfe,
     type: 2}
   rb: {fileID: 2893996757374524422}
-  meleeCollider: {fileID: 5221883848631241110}
-  projectileCollider: {fileID: 6904987767468626697}
   health: 3
   movementAction:
     m_Name: Movement
@@ -123,18 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84433f912ee5aa41a9b9e1c152f5d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeCollision: {fileID: 0}
-  projectileCollision: {fileID: 0}
+  meleeCollision: {fileID: 5116816130931470695}
+  projectileCollision: {fileID: 3822046006206192262}
   OnMeleeOverlapEnterEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8986220684357618281}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+        m_TargetAssemblyTypeName: Boat, Assembly-CSharp
+        m_MethodName: GetDamaged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -145,10 +144,57 @@ MonoBehaviour:
       m_Calls: []
   OnProjectileOverlapEnterEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8986220684357618281}
+        m_TargetAssemblyTypeName: Boat, Assembly-CSharp
+        m_MethodName: GetDamaged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnProjectileOverlapExitEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!70 &6052614249624526482
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368045171482731598}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.05}
+  m_Size: {x: 0.35, y: 0.9}
+  m_Direction: 0
 --- !u!1 &7373247601939076878
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,13 +206,13 @@ GameObject:
   - component: {fileID: 6398033471177476810}
   - component: {fileID: 5221883848631241110}
   - component: {fileID: 5116816130931470695}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Melee Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6398033471177476810
 Transform:
   m_ObjectHideFlags: 0
@@ -229,6 +275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bde601303af3f4d8e375b74073c5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   OnOverlapEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -252,7 +301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7204836702373349798
 Transform:
   m_ObjectHideFlags: 0
@@ -315,6 +364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bde601303af3f4d8e375b74073c5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
   OnOverlapEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -405,14 +457,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoatVisuals
       objectReference: {fileID: 0}
+    - target: {fileID: 7598238290963374476, guid: 8c2e82df249e9d74d979ccd5a60148e0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3cf4e2f4f7bee6241a5d0c14ab4c694e,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c2e82df249e9d74d979ccd5a60148e0, type: 3}
+--- !u!212 &806223360058165021 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4164173962875174414, guid: 8c2e82df249e9d74d979ccd5a60148e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3673347366854424851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &869741250945670132 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4533903235347882727, guid: 8c2e82df249e9d74d979ccd5a60148e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3673347366854424851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1171211213801765993 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2502492394887497082, guid: 8c2e82df249e9d74d979ccd5a60148e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3673347366854424851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7182127609229546271 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5860963180617820684, guid: 8c2e82df249e9d74d979ccd5a60148e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3673347366854424851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8672308995866133454 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5377406680852069085, guid: 8c2e82df249e9d74d979ccd5a60148e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3673347366854424851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8802609181978184732 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5247678309103285519, guid: 8c2e82df249e9d74d979ccd5a60148e0,
     type: 3}
   m_PrefabInstance: {fileID: 3673347366854424851}
   m_PrefabAsset: {fileID: 0}

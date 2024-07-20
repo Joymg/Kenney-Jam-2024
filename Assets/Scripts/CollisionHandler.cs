@@ -6,41 +6,17 @@ using UnityEngine.Events;
 
 public class CollisionHandler : MonoBehaviour
 {
-    public CollisionEventTrigger meleeCollision;
-    public CollisionEventTrigger projectileCollision;
-
     public UnityEvent OnMeleeOverlapEnterEvent;
     public UnityEvent OnMeleeOverlapExitEvent;
     public UnityEvent OnProjectileOverlapEnterEvent;
     public UnityEvent OnProjectileOverlapExitEvent;
 
-    private void Awake()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        meleeCollision.OnOverlapEnter.AddListener(OnMeleeOverlapEnter);
-        meleeCollision.OnOverlapExit.AddListener(OnMeleeOverlapExit);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            OnMeleeOverlapEnterEvent?.Invoke();
 
-        projectileCollision.OnOverlapEnter.AddListener(OnProjectileOverlapEnter);
-        projectileCollision.OnOverlapExit.AddListener(OnProjectileOverlapExit);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            OnMeleeOverlapEnterEvent?.Invoke();
     }
-
-    private void OnProjectileOverlapExit(Collider2D arg0)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void OnMeleeOverlapExit(Collider2D arg0)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void OnMeleeOverlapEnter(Collider2D arg0)
-    {
-
-    }
-
-    private void OnProjectileOverlapEnter(Collider2D arg0)
-    {
-
-    }
-
 }

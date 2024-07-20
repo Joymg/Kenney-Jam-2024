@@ -26,6 +26,7 @@ public class BoatController : Boat
 
     protected override void Awake()
     {
+        base.Awake();
         playerInput = new PlayerInput();
         playerInput.Enable();
         movementAction = player == Player.Player1 ? playerInput.Player1.Movement : playerInput.Player2.Movement;
@@ -37,7 +38,7 @@ public class BoatController : Boat
 
     private void MovementAction_canceled(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        inputVector = Vector2.zero;
     }
 
     private void MovementAction_performed(InputAction.CallbackContext obj)
