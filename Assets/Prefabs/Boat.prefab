@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5347092805948750812}
   - component: {fileID: 8986220684357618281}
   - component: {fileID: 2893996757374524422}
+  - component: {fileID: 401157287573584492}
   - component: {fileID: 6052614249624526482}
   m_Layer: 6
   m_Name: Boat
@@ -108,6 +109,54 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &401157287573584492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368045171482731598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84433f912ee5aa41a9b9e1c152f5d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMeleeOverlapEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8986220684357618281}
+        m_TargetAssemblyTypeName: Boat, Assembly-CSharp
+        m_MethodName: GetDamaged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnMeleeOverlapExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnProjectileOverlapEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8986220684357618281}
+        m_TargetAssemblyTypeName: Boat, Assembly-CSharp
+        m_MethodName: GetDamaged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnProjectileOverlapExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &6052614249624526482
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
