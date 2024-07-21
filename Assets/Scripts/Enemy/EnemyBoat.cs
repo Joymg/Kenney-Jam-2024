@@ -21,6 +21,8 @@ public class EnemyBoat : Boat
     public SplineAnimate SplineAnimator { get => splineAnimator; set => splineAnimator = value; }
     public BehaviourType CurrenBehaviour { get => behaviourType; set => behaviourType = value; }
 
+    [SerializeField] private float Speed = 5f;
+
     public void SetBehaviour(BehaviourType behaviourType)
     {
         this.behaviourType = behaviourType;
@@ -49,7 +51,7 @@ public class EnemyBoat : Boat
             return;
 
         behaviour.Tick();
-        rb.velocity = behaviour.BehaviourDirection * 5f;
+        rb.velocity = behaviour.BehaviourDirection * Speed;
     }
 
     public override void GetDamaged()

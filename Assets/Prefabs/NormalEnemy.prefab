@@ -66,6 +66,7 @@ MonoBehaviour:
   enemyType: 1
   _collider: {fileID: 6332768904246211309}
   splineAnimator: {fileID: 8911655056614336959}
+  Speed: 7
 --- !u!114 &8911655056614336959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_LoopMode: 0
   m_Method: 1
   m_Duration: 22.552242
-  m_MaxSpeed: 1
+  m_MaxSpeed: 4
   m_EasingMode: 0
   m_AlignmentMode: 0
   m_ObjectForwardAxis: 5
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     private const float ADD_POINT_EACH_SECONDS_INTERVAL = 5f;
     private const float SPAWN_PROBABILITY = 0.5f;
-    private const int POINTS_ADDED_PER_TIME_INTERVAL = 1;
+    private const int POINTS_ADDED_PER_TIME_INTERVAL = 100;
 
     [SerializeField] private EnemyDictionary enemyDictionary;
     [SerializeField] private GroupDictionary groupDictionary;
@@ -31,6 +31,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints = new();
     [SerializeField] private List<SplineContainer> splines = new();
     [SerializeField] private List<GroupSpawnData> groupsSpawnData = new();
+
+
+    [SerializeField] private List<SplineContainer> earlySplines = new();
+    [SerializeField] private List<SplineContainer> middleSplines = new();
+    [SerializeField] private List<SplineContainer> lateSplines = new();
+    [SerializeField] private GameObject map;
 
     [SerializeField] private int points;
     private float elapsedTime;
@@ -40,11 +46,13 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         elapsedTime = 0;
-        //points = 20;
+        splines.Clear();
+        splines.AddRange(earlySplines);
     }
 
     private void Update()
     {
+        ActivateCurrentSplines();
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= ADD_POINT_EACH_SECONDS_INTERVAL)
         {
@@ -61,6 +69,27 @@ public class EnemySpawner : MonoBehaviour
         if (!isSpawningGroups)
             StartCoroutine(GroupSpawns());
 
+    }
+
+    private void ActivateCurrentSplines()
+    {
+        float yPos = map.transform.position.y;
+        if (yPos < -20)
+        {
+            splines = new List<SplineContainer>();
+            splines.AddRange(middleSplines);
+        }
+
+        if (yPos < -20)
+        {
+            splines = new List<SplineContainer>();
+            splines.AddRange(middleSplines);
+        }
+        if (yPos < -80)
+        {
+            splines = new List<SplineContainer>();
+            splines.AddRange(lateSplines);
+        }
     }
 
     private IEnumerator GroupSpawns()
@@ -109,22 +138,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (totalCost <= points)
         {
-
-            int randomSpawnType = Random.Range(0, 2);
-            Vector3 spawnPoint = Vector3.zero;
-            EnemyBoat enemy = Instantiate(enemyDictionary.enemyCosts.First(ec => ec.enemyType == randomType).enemy, spawnPoint, Quaternion.identity);
-            if (randomSpawnType == 0)
-            {
-                InitiateSplineEnemy(enemy);
-            }
-            else
-            {
-                int randomIndex = Random.Range(0, spawnPoints.Count);
-                enemy.transform.position = spawnPoints[randomIndex].position;
-                enemy.SetBehaviour(EnemyBoat.BehaviourType.Straight);
-                enemy.SplineAnimator.enabled = false;
-            }
-            Debug.Log($"{enemy.name} : {enemy.transform.position}");
+            EnemyBoat enemy = Instantiate(enemyDictionary.enemyCosts.First(ec => ec.enemyType == randomType).enemy);
+            InitiateSplineEnemy(enemy);
             points -= totalCost;
         }
         return;

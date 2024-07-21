@@ -63,7 +63,7 @@ MonoBehaviour:
   health: 3
   _collider: {fileID: 6052614249624526482}
   player: 0
-  speed: 600
+  speed: 60000
   _weapon: {fileID: 6595526602662992031}
   _bulletPrefab: {fileID: 4043224915941796945, guid: e331ef8895bbae74284be410bbdd3d42,
     type: 3}
@@ -80,8 +80,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 3
+  m_Mass: 10
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
