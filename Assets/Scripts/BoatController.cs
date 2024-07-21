@@ -133,13 +133,14 @@ public class BoatController : Boat
         {
             _behaviourActive = false;
         }
+
     }
 
     private void Shoot()
     {
         Bullet bullet = Instantiate(_bulletPrefab, transform.position + Vector3.up, Quaternion.identity);
         bullet.Shoot(Vector3.up);
-
+        AudioManager.Instance.Play(AudioManager.SFX.Shoot);
         _timerForNextBullet = 0;
     }
 }

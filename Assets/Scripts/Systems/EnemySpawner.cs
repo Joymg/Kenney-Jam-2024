@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     private const float ADD_POINT_EACH_SECONDS_INTERVAL = 5f;
     private const float SPAWN_PROBABILITY = 0.5f;
-    private const int POINTS_ADDED_PER_TIME_INTERVAL = 100;
+    private const int POINTS_ADDED_PER_TIME_INTERVAL = 50;
 
     [SerializeField] private EnemyDictionary enemyDictionary;
     [SerializeField] private GroupDictionary groupDictionary;
@@ -79,13 +79,7 @@ public class EnemySpawner : MonoBehaviour
             splines = new List<SplineContainer>();
             splines.AddRange(middleSplines);
         }
-
-        if (yPos < -20)
-        {
-            splines = new List<SplineContainer>();
-            splines.AddRange(middleSplines);
-        }
-        if (yPos < -80)
+        else if (yPos < -80)
         {
             splines = new List<SplineContainer>();
             splines.AddRange(lateSplines);

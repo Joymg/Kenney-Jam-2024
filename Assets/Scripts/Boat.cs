@@ -84,6 +84,7 @@ public abstract class Boat : MonoBehaviour, IDamageable
                 break;
         }
         SetVisuals();
+        AudioManager.Instance.Play(AudioManager.SFX.Hit);
     }
 
     protected void SetVisuals()

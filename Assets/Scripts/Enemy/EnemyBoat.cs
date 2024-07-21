@@ -87,7 +87,10 @@ public class EnemyBoat : Boat
     {
         Bullet bullet = Instantiate(_bulletPrefab, transform.position + Vector3.down, Quaternion.identity);
         bullet.Shoot(Vector3.down);
-
+        if (Vector3.Distance(transform.position, Vector3.zero) <= 20f)
+        {
+            AudioManager.Instance.Play(AudioManager.SFX.Shoot);
+        }
         _timerForNextBullet = 0;
     }
 }
