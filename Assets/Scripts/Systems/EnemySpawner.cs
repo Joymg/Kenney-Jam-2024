@@ -101,7 +101,6 @@ public class EnemySpawner : MonoBehaviour
                 groupSpawnData.Spline.Spline.Knots.ToList()[0].Position,
                 Quaternion.identity);
 
-                Debug.Log($"{enemyBoat.name} : {enemyBoat.transform.position}");
                 InitiateSplineEnemy(enemyBoat);
                 yield return new WaitForSeconds(1);
             }

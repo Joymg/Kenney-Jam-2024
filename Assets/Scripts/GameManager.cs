@@ -7,16 +7,19 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static UnityEvent OnGameOver = new UnityEvent();
+    public static UnityEvent OnVictory = new UnityEvent();
 
     private void Awake()
     {
-        OnGameOver.AddListener(GameOver);
+        OnGameOver?.AddListener(BackToMainSceneTimer);
+        OnVictory?.AddListener(BackToMainSceneTimer);
     }
 
-    private void GameOver()
+    private void BackToMainSceneTimer()
     {
         StartCoroutine(GoBackToMainScene());
     }
+    
     private IEnumerator GoBackToMainScene()
     {
         yield return new WaitForSeconds(3.0f);

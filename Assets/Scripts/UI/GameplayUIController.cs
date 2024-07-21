@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameplayUIController : MonoBehaviour
 {
-    [SerializeField] private GameObject _panel;
+    [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _victoryPanel;
 
     private void Awake()
     {
         GameManager.OnGameOver?.AddListener(ShowGameOverUI);
-        _panel.SetActive(false);
+        GameManager.OnVictory?.AddListener(ShowVictoryUI);
+        _gameOverPanel.SetActive(false);
+        _victoryPanel.SetActive(false);
     }
 
     private void Update()
@@ -20,8 +23,11 @@ public class GameplayUIController : MonoBehaviour
 
     private void ShowGameOverUI()
     {
-        _panel.SetActive(true);
+        _gameOverPanel.SetActive(true);
     }
 
-    
+    private void ShowVictoryUI()
+    {
+        _victoryPanel.SetActive(true);
+    }
 }
