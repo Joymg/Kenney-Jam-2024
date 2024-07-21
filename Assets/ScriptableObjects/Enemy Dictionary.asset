@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d494b8ea1f6d11842ab5c4de04d6f9b4, type: 3}
+  m_Name: Enemy Dictionary
+  m_EditorClassIdentifier: 
+  enemyCosts:
+  - cost: 1
+    enemyType: 0
+    enemy: {fileID: 408191628862851989, guid: a4adfd9d3570047489e151d6340b5b2e, type: 3}
+  - cost: 3
+    enemyType: 1
+    enemy: {fileID: 408191628862851989, guid: 8d8ccf0c2f86f2e4ebee700ed19bc49e, type: 3}
+  - cost: 5
+    enemyType: 2
+    enemy: {fileID: 408191628862851989, guid: f812eed1ca5026f42a9478327a43cbb3, type: 3}

@@ -16,7 +16,7 @@ public class CollisionHandler : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             OnMeleeOverlapEnterEvent?.Invoke();
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && gameObject.layer != LayerMask.NameToLayer("Enemy"))
             OnMeleeOverlapEnterEvent?.Invoke();
     }
 }

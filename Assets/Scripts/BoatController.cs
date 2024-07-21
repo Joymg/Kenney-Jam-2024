@@ -13,15 +13,19 @@ public class BoatController : Boat
         None = 2,
     }
 
+    [SerializeField] protected Collider2D collider;
+    private bool justHit;
+    private float hitElapsedTime;
+
     [Header("Controls")]
-    [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private InputAction movementAction;
-    [SerializeField] private InputAction passWeaponAction;
     [SerializeField] private Player player;
+    [SerializeField] private PlayerInput playerInput;
+    private InputAction movementAction;
+    private InputAction passWeaponAction;
 
     [Header("Movement")]
     [SerializeField] private float speed;
-    [SerializeField] private Vector2 inputVector;
+    private Vector2 inputVector;
 
     [Header("Weapon")]
     [SerializeField] private SpriteRenderer _weapon;
@@ -62,6 +66,32 @@ public class BoatController : Boat
     private void Update()
     {
         rb.AddForce(inputVector * speed * Time.deltaTime, ForceMode2D.Force);
+        if (justHit)
+        {
+            hitElapsedTime += Time.deltaTime;
+
+            float alpha = Mathf.PingPong(Time.deltaTime * 30, 0.9f) + 0.1f;
+            Debug.Log(alpha);
+            visuals.SetAlpha(alpha);
+            collider.enabled = false;
+
+            if (hitElapsedTime >= 1f)
+            {
+                if (health <= 0)
+                {
+                    GameManager.OnGameOver.Invoke();
+                    visuals.SetAlpha(0);
+                }
+                else
+                {
+                    
+                    collider.enabled = true;
+                    visuals.SetAlpha(1);
+                }
+                justHit = false;
+                hitElapsedTime = 0f;
+            }
+        }
 
     }
 
@@ -84,10 +114,7 @@ public class BoatController : Boat
     public override void GetDamaged()
     {
         base.GetDamaged();
+        justHit = true;
 
-        if (health <= 0)
-        {
-            GameManager.OnGameOver.Invoke();
-        }
     }
 }
