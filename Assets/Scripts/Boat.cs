@@ -56,7 +56,7 @@ public abstract class Boat : MonoBehaviour, IDamageable
         SetVisuals();
     }
 
-    public void GetDamaged()
+    public virtual void GetDamaged()
     {
         Debug.Log($"{gameObject.name}: Damaged");
         health--;

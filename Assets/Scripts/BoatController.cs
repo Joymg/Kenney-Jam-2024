@@ -80,4 +80,14 @@ public class BoatController : Boat
         _owningWeapon = active;
         _weapon.enabled = active;
     }
+
+    public override void GetDamaged()
+    {
+        base.GetDamaged();
+
+        if (health <= 0)
+        {
+            GameManager.OnGameOver.Invoke();
+        }
+    }
 }
