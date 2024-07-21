@@ -67,7 +67,7 @@ MonoBehaviour:
   _weapon: {fileID: 6595526602662992031}
   _bulletPrefab: {fileID: 4043224915941796945, guid: e331ef8895bbae74284be410bbdd3d42,
     type: 3}
-  _shootSpeed: 3
+  _shootSpeed: 1
 --- !u!50 &2893996757374524422
 Rigidbody2D:
   serializedVersion: 4

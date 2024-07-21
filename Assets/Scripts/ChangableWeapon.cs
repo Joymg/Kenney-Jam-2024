@@ -63,7 +63,7 @@ public class ChangableWeapon : MonoBehaviour
         if (!_moving)
         {
             _boatSending = _weaponContection.BoatsConected.Find(x => x.PlayerId == playerSendingWeapon);
-            if (_boatSending.OwningWeapon)
+            if (_boatSending.OwningWeapon && _boatSending.BehaviourActive)
             {
                 _lerpValue = 0.0f;
                 _boatReceivig = _weaponContection.BoatsConected.Find(x => x.PlayerId != playerSendingWeapon);

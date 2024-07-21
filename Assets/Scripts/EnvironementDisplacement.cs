@@ -8,6 +8,9 @@ public class EnvironementDisplacement : MonoBehaviour
 
     private void Update()
     {
-        transform.position += speed * Time.deltaTime * -Vector3.up;
+        if (transform.position.y < 171f)
+        {
+            transform.position += speed * Time.deltaTime * -Vector3.up;
+        }
     }
 }

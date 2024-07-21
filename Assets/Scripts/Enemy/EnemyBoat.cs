@@ -14,9 +14,11 @@ public class EnemyBoat : Boat
 
     [SerializeField] private SplineAnimate splineAnimator;
 
+    [SerializeField] private Bullet _bulletPrefab;
+    [SerializeField] private float _shootSpeed;
+
     private BaseEnemyBehaviour behaviour;
-    private bool justHit;
-    private float hitElapsedTime;
+    private float _timerForNextBullet = 0.0f;
 
     public SplineAnimate SplineAnimator { get => splineAnimator; set => splineAnimator = value; }
     public BehaviourType CurrenBehaviour { get => behaviourType; set => behaviourType = value; }
@@ -51,7 +53,16 @@ public class EnemyBoat : Boat
             return;
 
         behaviour.Tick();
-        rb.velocity = behaviour.BehaviourDirection * Speed;
+        rb.velocity = behaviour.BehaviourDirection * 5f;
+
+        if (_bulletPrefab is not null)
+        {
+            _timerForNextBullet += Time.deltaTime;
+            if (_timerForNextBullet >= 1 / _shootSpeed)
+            {
+                Shoot();
+            }
+        }
     }
 
     public override void GetDamaged()
@@ -70,5 +81,13 @@ public class EnemyBoat : Boat
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+    }
+
+    private void Shoot()
+    {
+        Bullet bullet = Instantiate(_bulletPrefab, transform.position + Vector3.down, Quaternion.identity);
+        bullet.Shoot(Vector3.down);
+
+        _timerForNextBullet = 0;
     }
 }

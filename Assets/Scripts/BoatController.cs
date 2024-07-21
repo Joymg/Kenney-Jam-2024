@@ -34,10 +34,12 @@ public class BoatController : Boat
 
     private bool _owningWeapon = false;
     private float _timerForNextBullet = 0.0f;
+    private bool _behaviourActive = false;
 
     public InputAction PassWeaponAction { get { return passWeaponAction; } }
     public Player PlayerId { get { return player; } }
     public bool OwningWeapon => _owningWeapon;
+    public bool BehaviourActive => _behaviourActive;
     protected override void Awake()
     {
         base.Awake();
@@ -50,9 +52,10 @@ public class BoatController : Boat
         movementAction.canceled += MovementAction_canceled;
 
         ChangableWeapon.OnOwnershipChanged.AddListener((Player playerReceivingWeapon) => { if (player == playerReceivingWeapon) { ReceiveWeapon(); } });
-        ChangableWeapon.OnSendingWeapon.AddListener(() => { SendWeapon(); });
+        ChangableWeapon.OnSendingWeapon.AddListener(() => { if (_behaviourActive) SendWeapon(); });
 
         _weapon.enabled = false;
+        _behaviourActive = true;
     }
 
     private void MovementAction_canceled(InputAction.CallbackContext context)
@@ -68,7 +71,7 @@ public class BoatController : Boat
 
     private void Update()
     {
-        rb.AddForce(inputVector * speed * Time.deltaTime, ForceMode2D.Force);
+
         if (justHit)
         {
             hitElapsedTime += Time.deltaTime;
@@ -81,22 +84,22 @@ public class BoatController : Boat
             {
                 if (health <= 0)
                 {
-                    GameManager.OnGameOver.Invoke();
-                    visuals.SetAlpha(0);
+                    GameManager.OnGameOver?.Invoke();
                 }
                 else
                 {
-
                     _collider.enabled = true;
-                    visuals.SetAlpha(1);
                 }
+                visuals.SetAlpha(1);
                 justHit = false;
                 hitElapsedTime = 0f;
             }
-            return;
         }
 
-        if (_owningWeapon)
+        if (!_behaviourActive) return;
+
+        rb.AddForce(inputVector * speed * Time.deltaTime, ForceMode2D.Force);
+        if (_owningWeapon && !justHit)
         {
             _timerForNextBullet += Time.deltaTime;
             if (_timerForNextBullet >= 1 / _shootSpeed)
@@ -126,11 +129,15 @@ public class BoatController : Boat
     {
         base.GetDamaged();
         justHit = true;
+        if (health <= 0)
+        {
+            _behaviourActive = false;
+        }
     }
 
     private void Shoot()
     {
-        Bullet bullet = Instantiate(_bulletPrefab, transform.position+Vector3.up, Quaternion.identity);
+        Bullet bullet = Instantiate(_bulletPrefab, transform.position + Vector3.up, Quaternion.identity);
         bullet.Shoot(Vector3.up);
 
         _timerForNextBullet = 0;

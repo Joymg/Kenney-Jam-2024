@@ -67,6 +67,9 @@ MonoBehaviour:
   _collider: {fileID: 6332768904246211309}
   splineAnimator: {fileID: 8911655056614336959}
   Speed: 7
+  _bulletPrefab: {fileID: 5085451018925003632, guid: 42d56a5b4063f274f992f7ab312dce01,
+    type: 3}
+  _shootSpeed: 1
 --- !u!114 &8911655056614336959
 MonoBehaviour:
   m_ObjectHideFlags: 0
