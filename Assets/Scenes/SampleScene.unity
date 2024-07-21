@@ -28119,7 +28119,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 827734174}
+  - {fileID: 1511986918000410322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139736710
@@ -34529,16 +34529,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 7042268343416932911, guid: b96594967cb9655409d51394f31f3865,
-        type: 3}
-      propertyPath: points
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b96594967cb9655409d51394f31f3865, type: 3}
+--- !u!4 &1511986918000410322 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1855855666372670010, guid: b96594967cb9655409d51394f31f3865,
+    type: 3}
+  m_PrefabInstance: {fileID: 1511986918000410321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -34549,6 +34550,6 @@ SceneRoots:
   - {fileID: 1115388778}
   - {fileID: 159370999}
   - {fileID: 129358220}
+  - {fileID: 1910245272}
   - {fileID: 945780564}
   - {fileID: 561162554}
-  - {fileID: 1910245272}

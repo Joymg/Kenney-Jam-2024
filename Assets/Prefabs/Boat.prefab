@@ -59,6 +59,7 @@ MonoBehaviour:
   visualsConfiguration: {fileID: 11400000, guid: 34919dffd74212847a2a837c5599abfe,
     type: 2}
   rb: {fileID: 2893996757374524422}
+  collider: {fileID: 6052614249624526482}
   <collisionHandler>k__BackingField: {fileID: 401157287573584492}
   health: 3
   player: 0

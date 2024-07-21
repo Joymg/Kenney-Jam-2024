@@ -30,6 +30,7 @@ public class EnemyBoat : Boat
                 break;
             case BehaviourType.Path:
                 behaviour = new PathEnemyBehavior(SplineAnimator);
+                SplineAnimator.enabled = true;
                 break;
             case BehaviourType.Kamikaze:
                 break;
@@ -46,4 +47,5 @@ public class EnemyBoat : Boat
         behaviour.Tick();
         rb.velocity = behaviour.BehaviourDirection * 5f;
     }
+
 }

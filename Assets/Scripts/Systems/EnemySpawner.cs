@@ -78,6 +78,7 @@ public class EnemySpawner : MonoBehaviour
                 groupSpawnData.Spline.Spline.Knots.ToList()[0].Position,
                 Quaternion.identity);
 
+                Debug.Log($"{enemyBoat.name} : {enemyBoat.transform.position}");
                 InitiateSplineEnemy(enemyBoat);
                 yield return new WaitForSeconds(1);
             }
@@ -123,7 +124,7 @@ public class EnemySpawner : MonoBehaviour
                 enemy.SetBehaviour(EnemyBoat.BehaviourType.Straight);
                 enemy.SplineAnimator.enabled = false;
             }
-
+            Debug.Log($"{enemy.name} : {enemy.transform.position}");
             points -= totalCost;
         }
         return;
@@ -133,7 +134,7 @@ public class EnemySpawner : MonoBehaviour
     {
         int randomIndex = Random.Range(0, splines.Count);
         SplineContainer spline = splines[randomIndex];
-        enemy.transform.position = spline.Spline.Knots.ToList()[0].Position;
+        enemy.transform.position = spline.transform.TransformPoint(spline.Spline.Knots.ToList()[0].Position);
         enemy.SetBehaviour(EnemyBoat.BehaviourType.Path);
         enemy.SplineAnimator.Container = spline;
     }

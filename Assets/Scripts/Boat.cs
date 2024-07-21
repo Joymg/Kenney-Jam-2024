@@ -27,11 +27,20 @@ public abstract class Boat : MonoBehaviour, IDamageable
 
         public void SetVisuals(Visuals newVisuals)
         {
-            if(Base) Base.sprite = newVisuals.Base;
-            if(LargeSail) LargeSail.sprite = newVisuals.LargeSail;
-            if(Nest) Nest.sprite = newVisuals.Nest;
-            if(Flag) Flag.sprite = newVisuals.Flag;
-            if(SmallNest) SmallNest.sprite = newVisuals.SmallNest;
+            if (Base) Base.sprite = newVisuals.Base;
+            if (LargeSail) LargeSail.sprite = newVisuals.LargeSail;
+            if (Nest) Nest.sprite = newVisuals.Nest;
+            if (Flag) Flag.sprite = newVisuals.Flag;
+            if (SmallNest) SmallNest.sprite = newVisuals.SmallNest;
+        }
+
+        public void SetAlpha(float alpha)
+        {
+            if (Base) Base.color = new Color(Base.color.r, Base.color.g, Base.color.b, alpha);
+            if (LargeSail) LargeSail.color = new Color(LargeSail.color.r, LargeSail.color.g, LargeSail.color.b, alpha);
+            if (Nest) Nest.color = new Color(Nest.color.r, Nest.color.g, Nest.color.b, alpha);
+            if (Flag) Flag.color = new Color(Flag.color.r, Flag.color.g, Flag.color.b, alpha);
+            if (SmallNest) SmallNest.color = new Color(SmallNest.color.r, SmallNest.color.g, SmallNest.color.b, alpha);
         }
     }
 
@@ -46,6 +55,7 @@ public abstract class Boat : MonoBehaviour, IDamageable
     [SerializeField] protected SpriteRenderers visuals;
     [SerializeField] protected BoatDamageConfiguration visualsConfiguration;
     [SerializeField] protected Rigidbody2D rb;
+
     [field: SerializeField] public CollisionHandler collisionHandler { get; private set; }
 
 
@@ -73,7 +83,6 @@ public abstract class Boat : MonoBehaviour, IDamageable
                 state = State.Sunk;
                 break;
         }
-
         SetVisuals();
     }
 
@@ -81,6 +90,7 @@ public abstract class Boat : MonoBehaviour, IDamageable
     {
         visuals.SetVisuals(visualsConfiguration.boatVisualsByDamageStates.First(kvp => kvp.State == state).Visuals);
     }
+
 }
 
 

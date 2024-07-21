@@ -60,6 +60,7 @@ MonoBehaviour:
   visualsConfiguration: {fileID: 11400000, guid: 0de85c60c174d1040b304aab6635292e,
     type: 2}
   rb: {fileID: 4426514678841890782}
+  collider: {fileID: 6332768904246211309}
   <collisionHandler>k__BackingField: {fileID: 2253889847891088583}
   health: 1
   behaviourType: 0
@@ -164,13 +165,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnMeleeOverlapEnterEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 408191628862851989}
+        m_TargetAssemblyTypeName: Boat, Assembly-CSharp
+        m_MethodName: GetDamaged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnMeleeOverlapExitEvent:
     m_PersistentCalls:
       m_Calls: []
   OnProjectileOverlapEnterEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 408191628862851989}
+        m_TargetAssemblyTypeName: Boat, Assembly-CSharp
+        m_MethodName: GetDamaged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnProjectileOverlapExitEvent:
     m_PersistentCalls:
       m_Calls: []
