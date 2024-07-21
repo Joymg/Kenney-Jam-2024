@@ -14,14 +14,14 @@ public class BoatController : Boat
     }
 
     [Header("Controls")]
-    [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private InputAction movementAction;
-    [SerializeField] private InputAction passWeaponAction;
     [SerializeField] private Player player;
+    [SerializeField] private PlayerInput playerInput;
+    private InputAction movementAction;
+    private InputAction passWeaponAction;
 
     [Header("Movement")]
     [SerializeField] private float speed;
-    [SerializeField] private Vector2 inputVector;
+    private Vector2 inputVector;
 
     [Header("Weapon")]
     [SerializeField] private SpriteRenderer _weapon;

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503ab56d4dd71d646886b3683f48c5c7, type: 3}
+  m_Name: MediumBoatDMGConfig
+  m_EditorClassIdentifier: 
+  boatVisualsByDamageStates:
+  - State: 0
+    Visuals:
+      <Base>k__BackingField: {fileID: 21300000, guid: 6e819fb9b513e9e44bda54af4ad132f3,
+        type: 3}
+      <LargeSail>k__BackingField: {fileID: 21300000, guid: 5e70ce8d0bfc5e048be6602fe07e4f95,
+        type: 3}
+      <Nest>k__BackingField: {fileID: 21300000, guid: 4b3520df09325d541920c5c07a61ba65,
+        type: 3}
+      <Flag>k__BackingField: {fileID: 21300000, guid: 4bbd22caef4855f49b3649254d74bbe4,
+        type: 3}
+      <SmallNest>k__BackingField: {fileID: 0}
+  - State: 1
+    Visuals:
+      <Base>k__BackingField: {fileID: 21300000, guid: e2edb6dec118e0447a3ecb161c3ae09b,
+        type: 3}
+      <LargeSail>k__BackingField: {fileID: 21300000, guid: c8c61cdfca5f66244a60b0afe65e5c84,
+        type: 3}
+      <Nest>k__BackingField: {fileID: 21300000, guid: 4b3520df09325d541920c5c07a61ba65,
+        type: 3}
+      <Flag>k__BackingField: {fileID: 21300000, guid: 4bbd22caef4855f49b3649254d74bbe4,
+        type: 3}
+      <SmallNest>k__BackingField: {fileID: 0}
+  - State: 2
+    Visuals:
+      <Base>k__BackingField: {fileID: 21300000, guid: 2a9e825857380314e9e588ab1be53b52,
+        type: 3}
+      <LargeSail>k__BackingField: {fileID: 21300000, guid: 703f0d12801572f4e96d5a3a4a6ca88c,
+        type: 3}
+      <Nest>k__BackingField: {fileID: 21300000, guid: 4b3520df09325d541920c5c07a61ba65,
+        type: 3}
+      <Flag>k__BackingField: {fileID: 21300000, guid: 4bbd22caef4855f49b3649254d74bbe4,
+        type: 3}
+      <SmallNest>k__BackingField: {fileID: 0}
+  - State: 3
+    Visuals:
+      <Base>k__BackingField: {fileID: 21300000, guid: 1bec3cbf64946c743b7b61435ea0d77f,
+        type: 3}
+      <LargeSail>k__BackingField: {fileID: 21300000, guid: 0e51095a635716044a37e4bbad68de65,
+        type: 3}
+      <Nest>k__BackingField: {fileID: 21300000, guid: 679b794836791404485f816222d8120d,
+        type: 3}
+      <Flag>k__BackingField: {fileID: 21300000, guid: 4bbd22caef4855f49b3649254d74bbe4,
+        type: 3}
+      <SmallNest>k__BackingField: {fileID: 0}

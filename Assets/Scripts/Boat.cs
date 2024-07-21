@@ -27,11 +27,11 @@ public abstract class Boat : MonoBehaviour, IDamageable
 
         public void SetVisuals(Visuals newVisuals)
         {
-            Base.sprite = newVisuals.Base;
-            LargeSail.sprite = newVisuals.LargeSail;
-            Nest.sprite = newVisuals.Nest;
-            Flag.sprite = newVisuals.Flag;
-            SmallNest.sprite = newVisuals.SmallNest;
+            if(Base) Base.sprite = newVisuals.Base;
+            if(LargeSail) LargeSail.sprite = newVisuals.LargeSail;
+            if(Nest) Nest.sprite = newVisuals.Nest;
+            if(Flag) Flag.sprite = newVisuals.Flag;
+            if(SmallNest) SmallNest.sprite = newVisuals.SmallNest;
         }
     }
 
@@ -46,6 +46,7 @@ public abstract class Boat : MonoBehaviour, IDamageable
     [SerializeField] protected SpriteRenderers visuals;
     [SerializeField] protected BoatDamageConfiguration visualsConfiguration;
     [SerializeField] protected Rigidbody2D rb;
+    [field: SerializeField] public CollisionHandler collisionHandler { get; private set; }
 
 
     [Header("Fields")]
@@ -76,7 +77,7 @@ public abstract class Boat : MonoBehaviour, IDamageable
         SetVisuals();
     }
 
-    private void SetVisuals()
+    protected void SetVisuals()
     {
         visuals.SetVisuals(visualsConfiguration.boatVisualsByDamageStates.First(kvp => kvp.State == state).Visuals);
     }
