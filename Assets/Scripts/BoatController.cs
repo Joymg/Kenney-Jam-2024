@@ -13,7 +13,7 @@ public class BoatController : Boat
         None = 2,
     }
 
-    [SerializeField] protected Collider2D collider;
+    [SerializeField] protected Collider2D _collider;
     private bool justHit;
     private float hitElapsedTime;
 
@@ -29,8 +29,11 @@ public class BoatController : Boat
 
     [Header("Weapon")]
     [SerializeField] private SpriteRenderer _weapon;
+    [SerializeField] private Bullet _bulletPrefab;
+    [SerializeField] private float _shootSpeed;
 
     private bool _owningWeapon = false;
+    private float _timerForNextBullet = 0.0f;
 
     public InputAction PassWeaponAction { get { return passWeaponAction; } }
     public Player PlayerId { get { return player; } }
@@ -71,9 +74,8 @@ public class BoatController : Boat
             hitElapsedTime += Time.deltaTime;
 
             float alpha = Mathf.PingPong(Time.deltaTime * 30, 0.9f) + 0.1f;
-            Debug.Log(alpha);
             visuals.SetAlpha(alpha);
-            collider.enabled = false;
+            _collider.enabled = false;
 
             if (hitElapsedTime >= 1f)
             {
@@ -84,15 +86,24 @@ public class BoatController : Boat
                 }
                 else
                 {
-                    
-                    collider.enabled = true;
+
+                    _collider.enabled = true;
                     visuals.SetAlpha(1);
                 }
                 justHit = false;
                 hitElapsedTime = 0f;
             }
+            return;
         }
 
+        if (_owningWeapon)
+        {
+            _timerForNextBullet += Time.deltaTime;
+            if (_timerForNextBullet >= 1 / _shootSpeed)
+            {
+                Shoot();
+            }
+        }
     }
 
     private void ReceiveWeapon()
@@ -115,6 +126,13 @@ public class BoatController : Boat
     {
         base.GetDamaged();
         justHit = true;
+    }
 
+    private void Shoot()
+    {
+        Bullet bullet = Instantiate(_bulletPrefab, transform.position+Vector3.up, Quaternion.identity);
+        bullet.Shoot(Vector3.up);
+
+        _timerForNextBullet = 0;
     }
 }

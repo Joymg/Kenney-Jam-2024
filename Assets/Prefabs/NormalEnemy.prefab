@@ -60,11 +60,11 @@ MonoBehaviour:
   visualsConfiguration: {fileID: 11400000, guid: da8548a021c959d40bc45e0f58f604d0,
     type: 2}
   rb: {fileID: 4426514678841890782}
-  collider: {fileID: 6332768904246211309}
   <collisionHandler>k__BackingField: {fileID: 9106379581760039301}
   health: 3
   behaviourType: 0
   enemyType: 1
+  _collider: {fileID: 6332768904246211309}
   splineAnimator: {fileID: 8911655056614336959}
 --- !u!114 &8911655056614336959
 MonoBehaviour:

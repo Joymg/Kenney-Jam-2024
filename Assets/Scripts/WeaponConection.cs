@@ -31,7 +31,6 @@ public class WeaponConection : MonoBehaviour
     {
         _tubeSprite.transform.position = _boatsToConnect[1].transform.position;
         _tubeSprite.transform.rotation *= Quaternion.FromToRotation(_tubeSprite.transform.right, _boatsToConnect[0].transform.position - _boatsToConnect[1].transform.position);
-        //_tubeSprite.transform.LookAt(_boatsToConnect[0].transform.position);
         _tubeSize = new Vector2(Vector3.Magnitude(_boatsToConnect[1].transform.position - _boatsToConnect[0].transform.position), _tubeSprite.size.y);
         _tubeSprite.size = _tubeSize;
     }

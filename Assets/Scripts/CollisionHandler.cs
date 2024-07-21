@@ -17,7 +17,11 @@ public class CollisionHandler : MonoBehaviour
         {
             OnMeleeOverlapEnterEvent?.Invoke();
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("AllyBullet") || collision.gameObject.layer == LayerMask.NameToLayer("EnemyBullet"))
         {
             OnProjectileOverlapEnterEvent?.Invoke();
         }

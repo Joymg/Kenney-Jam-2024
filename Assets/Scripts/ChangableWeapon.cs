@@ -6,9 +6,12 @@ using UnityEngine.InputSystem;
 
 public class ChangableWeapon : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private SpriteRenderer _visuals;
     [SerializeField] private WeaponConection _weaponContection;
-    [SerializeField] private float _speed;
+
+    [Header("Variables")]
+    [SerializeField] private float _movementSpeed;
 
     private bool _moving;
     private BoatController _boatSending;
@@ -40,7 +43,7 @@ public class ChangableWeapon : MonoBehaviour
     {
         if (_moving)
         {
-            _lerpValue += _speed * (_speed / Vector3.Magnitude(_boatSending.transform.position - _boatReceivig.transform.position)) * Time.deltaTime;
+            _lerpValue += _movementSpeed * (_movementSpeed / Vector3.Magnitude(_boatSending.transform.position - _boatReceivig.transform.position)) * Time.deltaTime;
             if (_lerpValue < 1)
             {
                 _visuals.transform.position = Vector3.Lerp(_boatSending.transform.position, _boatReceivig.transform.position, _lerpValue);
@@ -53,8 +56,6 @@ public class ChangableWeapon : MonoBehaviour
             }
             return;
         }
-
-        Shoot();
     }
 
     private void ChangeOwnership(BoatController.Player playerSendingWeapon)
@@ -72,10 +73,5 @@ public class ChangableWeapon : MonoBehaviour
                 OnSendingWeapon?.Invoke();
             }
         }
-    }
-
-    private void Shoot()
-    {
-
     }
 }

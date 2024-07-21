@@ -60,11 +60,11 @@ MonoBehaviour:
   visualsConfiguration: {fileID: 11400000, guid: bebededa6c9582a45b9725e4df3bc295,
     type: 2}
   rb: {fileID: 4426514678841890782}
-  collider: {fileID: 6332768904246211309}
   <collisionHandler>k__BackingField: {fileID: -3173476901875497578}
   health: 4
   behaviourType: 0
   enemyType: 2
+  _collider: {fileID: 6332768904246211309}
   splineAnimator: {fileID: 8911655056614336959}
 --- !u!114 &8911655056614336959
 MonoBehaviour:
@@ -183,9 +183,6 @@ MonoBehaviour:
       m_Calls: []
   OnProjectileOverlapEnterEvent:
     m_PersistentCalls:
-      m_Calls: []
-  OnProjectileOverlapExitEvent:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 408191628862851989}
         m_TargetAssemblyTypeName: Boat, Assembly-CSharp
@@ -199,6 +196,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnProjectileOverlapExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3790144157793557844
 PrefabInstance:
   m_ObjectHideFlags: 0
