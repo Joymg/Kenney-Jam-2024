@@ -15,7 +15,7 @@ public class MainMenuUIController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("GameplayScene");
     }
     public void ActivateControlsPanel()
     {
