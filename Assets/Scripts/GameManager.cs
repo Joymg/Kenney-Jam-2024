@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public static UnityEvent OnGameOver;
+    public static UnityEvent OnGameOver = new UnityEvent();
 
     private void Awake()
     {
@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-
+        StartCoroutine(GoBackToMainScene());
+    }
+    private IEnumerator GoBackToMainScene()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene("Menu");
     }
 }
