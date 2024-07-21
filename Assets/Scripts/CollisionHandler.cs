@@ -13,10 +13,13 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-            OnMeleeOverlapEnterEvent?.Invoke();
-
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && gameObject.layer != LayerMask.NameToLayer("Enemy"))
+        {
             OnMeleeOverlapEnterEvent?.Invoke();
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        {
+            OnProjectileOverlapEnterEvent?.Invoke();
+        }
     }
 }
